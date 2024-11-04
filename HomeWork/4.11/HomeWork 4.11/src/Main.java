@@ -10,6 +10,6 @@ public class Main {
                 new Engine("M62",286,4.4d,Fuels.DIESEL)
         );
 
-        System.out.println(BMW.aboutCar());
+        System.out.println(BMW);
     }
 }

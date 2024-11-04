@@ -59,7 +59,8 @@ public class Car {
         return title;
     }
 
-    public String aboutCar(){
+    @Override
+    public String toString(){
         return "This is a " + title + " with engine: " + engine.getEngineTitle() + "\n\thorse powers " + engine.getHorsePowers() +
                 "\n\tcapacity " + engine.getCapacity() + "\n\tfuel type "+ engine.getFuelType() + "\non " +transmission.getTransmission().name() + " transmission\n" +
                 "contains " + gearBox.getGearsCount() + " gears " + "with top momentum around " + gearBox.getMaxMomentum() + "\n" +
