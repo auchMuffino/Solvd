@@ -65,7 +65,7 @@ public class Car {
                 "contains " + gearBox.getGearsCount() + " gears " + "with top momentum around " + gearBox.getMaxMomentum() + "\n" +
                 "Wheels description:\n" + "\tfront right wheel ratio " + wheels[0].getRatio() + " season " + wheels[0].getSeason().name() +
                 "\n\tback right wheel ratio " + wheels[1].getRatio() + " season " + wheels[1].getSeason() + "\n\tback left wheel ratio " +
-                wheels[2].getRatio() + " season " + wheels[2].getSeason().name() + "\n\tfront left wheel ratio" + wheels[3].getRatio() +
+                wheels[2].getRatio() + " season " + wheels[2].getSeason().name() + "\n\tfront left wheel ratio " + wheels[3].getRatio() +
                 " season " + wheels[3].getSeason().name();
     }
 }
