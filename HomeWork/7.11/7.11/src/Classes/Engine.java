@@ -1,5 +1,7 @@
 package Classes;
 
+import java.util.Objects;
+
 public class Engine {
 
     private String engineTitle = "";
@@ -48,5 +50,28 @@ public class Engine {
 
     public Fuels getFuelType(){
         return fuelType;
+    }
+
+    @Override
+    public String toString() {
+        return "Engine{" +
+                "engineTitle='" + engineTitle + '\'' +
+                ", horsePowers=" + horsePowers +
+                ", capacity=" + capacity +
+                ", fuelType=" + fuelType +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Engine engine = (Engine) o;
+        return horsePowers == engine.horsePowers && Double.compare(capacity, engine.capacity) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(engineTitle, horsePowers, capacity, fuelType);
     }
 }
