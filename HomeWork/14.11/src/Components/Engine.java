@@ -1,12 +1,15 @@
 package Components;
 
+import Vehicles.Interfaces.Breakable;
+
 import java.util.Objects;
 
-public class Engine {
+public class Engine implements Breakable {
     private String engineTitle = "";
     private int horsePowers = 0;
     private double capacity = 0.0d;
     private FuelTypes fuelType = FuelTypes.DIESEL;
+    private boolean broken = false;
 
 
     public Engine(String engineTitle, int horsePowers, double capacity, FuelTypes fuelType) {
@@ -72,5 +75,19 @@ public class Engine {
     @Override
     public int hashCode() {
         return Objects.hash(engineTitle, horsePowers, capacity, fuelType);
+    }
+
+    @Override
+    public void breakQ() {
+        this.broken = true;
+    }
+
+    @Override
+    public void breakQ(boolean value) {
+        this.broken = value;
+    }
+
+    public boolean getBroken(){
+        return this.broken;
     }
 }

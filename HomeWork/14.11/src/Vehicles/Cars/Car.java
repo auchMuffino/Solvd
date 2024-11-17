@@ -1,11 +1,12 @@
 package Vehicles.Cars;
 
 import Components.*;
+import Vehicles.Interfaces.IMove;
 import Vehicles.Vehicle;
 
 import java.util.Arrays;
 
-public abstract class Car implements Vehicle {
+public abstract class Car extends Vehicle implements IMove {
     protected Integer topSpeed;
     protected Double weight;
     protected String title;
@@ -19,6 +20,10 @@ public abstract class Car implements Vehicle {
 
     protected static int numberOfCars=0;
 
+    static {
+        System.out.println("Current number of cars:" + numberOfCars);
+    }
+
     public Car(){
         numberOfCars++;
     }
@@ -26,31 +31,34 @@ public abstract class Car implements Vehicle {
     public Car(Integer topSpeed, Double weight, String title, Engine engine,
                Wheel[] wheels, Transmission transmission, CarBody carBody,
                Double tankCapacity, Double fuelConsumption, Double fuelLevel) {
-        this.topSpeed = topSpeed;
-        this.weight = weight;
-        this.title = title;
-        this.engine = engine;
-        this.transmission = transmission;
-        this.carBody = carBody;
-        this.tankCapacity = tankCapacity;
-        this.fuelConsumption = fuelConsumption;
-        this.fuelLevel = fuelLevel;
-        this.wheels = new Wheel[wheels.length];
-        System.arraycopy(wheels, 0, this.wheels, 0, wheels.length);
+
+        setTopSpeed(topSpeed);
+        setWeight(weight);
+        setTitle(title);
+        setEngine(engine);
+        setTransmission(transmission);
+        setCarBody(carBody);
+        setTankCapacity(tankCapacity);
+        setFuelConsumption(fuelConsumption);
+        setFuelLevel(fuelLevel);
+        setWheels(wheels);
         numberOfCars++;
     }
 
-    public final void setTopSpeed(Integer topSpeed){
+    @Override
+    public void setTopSpeed(Integer topSpeed){
         if(topSpeed > 0)
             this.topSpeed = topSpeed;
     }
 
-    public final void setTitle(String title){
+    @Override
+    public void setTitle(String title){
         if(!title.isEmpty())
             this.title = title;
     }
 
-    public final void setWeight(Double weight){
+    @Override
+    public void setWeight(Double weight){
         if(weight > 0.d)
             this.weight = weight;
     }
@@ -60,6 +68,7 @@ public abstract class Car implements Vehicle {
     }
 
     public final void setWheels(Wheel[] wheels){
+        this.wheels = new Wheel[wheels.length];
         System.arraycopy(wheels, 0, this.wheels, 0, wheels.length);
     }
 
@@ -83,15 +92,18 @@ public abstract class Car implements Vehicle {
         this.fuelLevel = fuelLevel;
     }
 
-    public final Integer getTopSpeed(){
+    @Override
+    public Integer getTopSpeed(){
         return this.topSpeed;
     }
 
-    public final String getTitle(){
+    @Override
+    public String getTitle(){
         return this.title;
     }
 
-    public final Double getWeight(){
+    @Override
+    public Double getWeight(){
         return this.weight;
     }
 
@@ -123,7 +135,18 @@ public abstract class Car implements Vehicle {
         return fuelLevel;
     }
 
-    public abstract void go(int kms);
+    public void go(int kms) {
+        if(this.engine.getBroken() || this.transmission.getBroken()){
+            System.out.println("You cant go because some parts of your car are broken");
+        } else {
+            if ((fuelLevel - (kms * 0.01) * this.fuelConsumption) < 0) {
+                System.out.println("Not enough fuel, you should go to gestation first for this trip");
+            } else {
+                this.fuelLevel -= (kms * 0.01) * this.fuelConsumption;
+                System.out.println("Great trip! Current fuel level: " + this.fuelLevel + "L");
+            }
+        }
+    }
 
     @Override
     public String toString(){
@@ -140,5 +163,6 @@ public abstract class Car implements Vehicle {
                 "\tCurrent Fuel Level: "+ this.fuelLevel + "\n" +
                 "}";
     }
+
 
 }

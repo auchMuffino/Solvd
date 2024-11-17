@@ -11,11 +11,21 @@ public class Main {
                         new Wheel(28, Seasons.MID_SEASON, WheelTypes.UNIVERSAL)},
                 new Transmission(Transmissions.OFF_ROAD), CarBody.SUV, 70d, 7.5d, 55d);
 
-        BMW.go(735);
-        System.out.println(BMW.getFuelLevel());
-        GasStation.refilling(BMW, 20);
-        System.out.println(BMW.getFuelLevel());
 
+        BMW.go(735);
+
+        Mechanik vova = new Mechanik();
+
+        if(vova.isBroken(BMW.getEngine())){
+            vova.repair(BMW.getEngine());
+            System.out.println("1");
+        } else if (vova.isBroken(BMW.getTransmission())) {
+            vova.repair(BMW.getTransmission());
+            System.out.println("2");
+        } else {
+            vova.say();
+        }
+        
         CarWash.cleanCar(BMW);
     }
 }

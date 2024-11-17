@@ -17,16 +17,6 @@ public class CasualCar extends Car {
     }
 
     @Override
-    public void go(int kms) {
-        if((fuelLevel - (kms * 0.01)*this.fuelConsumption) < 0){
-            System.out.println("Not enough fuel, you should go to gestation first for this trip");
-        } else{
-            this.fuelLevel -= (kms * 0.01)*this.fuelConsumption;
-            System.out.println("Great trip! Current fuel level: " + this.fuelLevel + "L");
-        }
-    }
-
-    @Override
     public String toString() {
         return "CasualCar{\n"+"\tNumber of seats:"+ this.numberOfSeats + "\n" + super.toString() + "\n}";
     }

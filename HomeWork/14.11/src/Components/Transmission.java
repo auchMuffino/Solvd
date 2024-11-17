@@ -1,7 +1,10 @@
 package Components;
 
-public class Transmission {
+import Vehicles.Interfaces.Breakable;
+
+public class Transmission implements Breakable {
     private Transmissions transmissionType = Transmissions.CASUAL;
+    private boolean broken = false;
 
     public Transmission(Transmissions transmissionType){
         this.transmissionType = transmissionType;
@@ -19,5 +22,19 @@ public class Transmission {
         return "Transmission{" +
                 "transmissionType=" + transmissionType.name() +
                 '}';
+    }
+
+    @Override
+    public void breakQ() {
+        this.broken = true;
+    }
+
+    @Override
+    public void breakQ(boolean value) {
+        this.broken = value;
+    }
+
+    public boolean getBroken(){
+        return this.broken;
     }
 }

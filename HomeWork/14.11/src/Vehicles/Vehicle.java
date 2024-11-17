@@ -1,22 +1,21 @@
 package Vehicles;
 
-public interface Vehicle {
-
+public abstract class Vehicle{
     Integer topSpeed = null;
     String title = "Untitled";
     Double weight = null;
 
-    void setTopSpeed(Integer topSpeed);
+    public Vehicle(){}
 
-    void setTitle(String title);
+    abstract public void setTopSpeed(Integer topSpeed);
 
-    void setWeight(Double weight);
+    abstract public void setTitle(String title);
 
-    Integer getTopSpeed();
+    abstract public void setWeight(Double weight);
 
-    String getTitle();
+    abstract public Integer getTopSpeed();
 
-    Double getWeight();
+    abstract public String getTitle();
 
-    void go(int kms);
+    abstract public Double getWeight();
 }
